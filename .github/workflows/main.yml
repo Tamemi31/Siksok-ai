@@ -13,7 +13,7 @@ jobs:
     - name: Unzip Project
       run: |
         unzip SiksokAI-AndroidProject.zip
-        cp -r SiksokAI/* .
+        ls -la SiksokAI/
 
     - uses: actions/setup-java@v4
       with:
@@ -24,6 +24,7 @@ jobs:
       uses: android-actions/setup-android@v3
 
     - name: Build APK
+      working-directory: SiksokAI
       run: |
         chmod +x gradlew
         ./gradlew assembleDebug
@@ -32,4 +33,4 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: SiksokAI-APK
-        path: app/build/outputs/apk/debug/app-debug.apk
+        path: SiksokAI/app/build/outputs/apk/debug/app-debug.apk
